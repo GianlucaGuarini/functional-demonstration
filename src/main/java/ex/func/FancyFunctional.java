@@ -2,20 +2,20 @@ package ex.func;
 
 import java.time.LocalDate;
 
-import static ex.func.Transaction.Currency.USD;
-import static ex.func.Transaction.State.VALID;
+import static ex.func.FancyTransaction.Currency.USD;
+import static ex.func.FancyTransaction.State.VALID;
 
-public class Functional {
+public class FancyFunctional {
 
   private static final double SUB_CHARGE = 0.03;
   private static final LocalDate TOP_OF_YEAR = LocalDate.of(2025, 1, 1);
 
   public static void main(String[] args) {
-    var chargedTopOfYear = Transaction.samples().stream()
+    var chargedTopOfYear = FancyTransaction.samples().stream()
         .filter(transaction -> TOP_OF_YEAR.equals(transaction.date()))
         .filter(transaction -> USD.equals(transaction.currency()))
         .filter(transaction -> VALID.equals(transaction.state()))
-        .mapToDouble(Transaction::amount)
+        .mapToDouble(FancyTransaction::amount)
         .map(amount -> amount * SUB_CHARGE)
         .sum();
 
